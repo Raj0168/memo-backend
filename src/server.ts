@@ -2,12 +2,14 @@ import express, { NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
+import authRoutes from "./routes/auth.routes";
+
 dotenv.config();
 const app = express();
 
 app.use(express.json());
+app.use("/api/auth", authRoutes);
 
-// Healthcheck route
 app.get("/", (req: Request, res: Response) => {
   res.send("API is running");
 });
