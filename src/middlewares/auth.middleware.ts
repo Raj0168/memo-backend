@@ -22,7 +22,11 @@ export const protect = async (
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || "lololol") as {
+    console.log(process.env.JWT_SECRET, "token");
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET || "default JWT Token here"
+    ) as {
       id: string;
     };
     const user = await User.findById(decoded.id).select("-password");
